@@ -1,0 +1,37 @@
+#include <iostream>
+#include <unordered_map>
+#include <vector>
+using namespace std;
+//to convert char to int, subtract '0
+//this problem is written rlly poorly tbh
+int main(){
+    string given;
+    cin >> given;
+    int N = given.length();
+    unordered_map <char, int> all;
+    all['I'] = 1;
+    all['V'] = 5;
+    all['X'] = 10;
+    all['L'] = 50;
+    all['C'] = 100;
+    all['D'] = 500;
+    all['M'] = 1000;
+    int final = 0;
+    for (int i = 3; i < N; i +=2){
+        int X = given[i-3] - '0';
+        if (all[given[i]] > all[given[i-2]]){
+            final -= all[given[i-2]] * X;
+        }else{
+            final += all[given[i-2]] * X;
+        }
+    }
+    int y = given[N-2] - '0';
+    final += all[given[N-1]]* y;
+    cout << final << endl;
+
+}
+//check if R' is greater than R. Create a map for this.
+//the current value of i is the current numberal
+//i-1 is the current number
+//i-2 is the last numeral
+//i-3 is the last number
