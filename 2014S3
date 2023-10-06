@@ -1,0 +1,69 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+char solve(int N){
+    vector<int> top(N);
+    for (int i = 0; i < N; ++i){
+        int num; cin >> num;
+        top.insert(top.begin(), num);
+    }
+    vector<int> bottom(0);
+    //check top vector[0] for current value. if it is not it
+    //move that value to the front of the bottom vector
+    //vector has been 
+    int current = 1;
+    bool check_top = true; 
+    while (true){
+        if (top.size() == 0){
+            check_top = false;
+        }
+        if (current == N){
+                return 'Y';
+            }
+        if (check_top){
+            if (current == N){
+                return 'Y';
+            }
+            if (current == top[0]){
+                top.erase(top.begin() + 0);
+                current++;
+            }
+            else if (bottom.size() > 0 && current == bottom[0]){
+                bottom.erase(bottom.begin() + 0);
+                current++;
+            }
+            else{
+                if (top.size() > 0){
+                    bottom.insert(bottom.begin(), top[0]);
+                    top.erase(top.begin() + 0);
+                }
+            }
+            //check top[0] and bottom[0] for the value
+            //if it is not in either, move from top[0] to bottom[0]
+        }else{
+            if (bottom[0] == current){
+                bottom.erase(bottom.begin() + 0);
+                current++;
+            }else{
+                return 'N';
+            }
+        }
+    }
+}
+int main(){
+    int K; cin >> K;
+    for (int k = 0; k < K; ++k){
+        int xyz; cin >> xyz;
+        cout << solve(xyz) << endl;
+    }
+    
+}
+//we break when both vectors have been searched
+//before searching a vecto
+
+
+//u could count the number of values u have checked
+//if that number is equal to how many should be counted,
+
+//partial solution, 12/15, will fix later
+//the max number that could need to be counted is:
