@@ -1,0 +1,25 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+#include <iomanip>
+using namespace std;
+int main(){
+    int N; cin >> N;
+    vector<int> all(N);
+    for (int i = 0; i < N; ++i) cin >> all[i];
+    sort(all.begin(), all.end());
+    long double smallest = 10000000000000000;
+    for (int i = 1; i < N-1; ++i){
+        double cur = all[i] - all[i-1];
+        cur = (double) cur / 2;
+        double hi = all[i+1] - all[i];
+        hi = (double) hi / 2;
+        cur += hi;
+        if (cur < smallest){
+            smallest = cur;
+        }
+    }
+    cout << fixed << setprecision(1) << smallest;
+    cout << endl;
+}
