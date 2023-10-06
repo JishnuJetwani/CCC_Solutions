@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+int main(){
+    string og; cin >> og;
+    string ne; cin >> ne;
+    int numAst = 0;
+    for (int i = 0; i < ne.size(); ++i){
+        if (ne[i] == '*'){
+            numAst++;
+        }
+        for (int j = 0; j < og.size(); ++j){
+            if (ne[i] == og[j]){
+                og.erase(og.begin() + j);
+                break;
+            }
+            if (j == og.size() - 1){
+                numAst--;
+            }
+
+        }
+    }
+    if (numAst == 0){
+        cout << 'A' << endl;
+    } else{
+        cout << 'N' << endl;
+    }
+
+}
