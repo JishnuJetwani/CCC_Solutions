@@ -1,0 +1,53 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int main(){
+    int Q; cin >> Q;
+    int N; cin >> N;
+    int NTwo = 0;
+    int NOne = 0;
+    vector<int> fir(N);
+    vector<int> sec(N);
+    int total = 0;
+    for (int i = 0 ; i < N; ++i) cin >> fir[i];
+    for (int i = 0 ; i < N; ++i) cin >> sec[i];
+    sort(fir.begin(), fir.end());
+    sort(sec.begin(), sec.end());
+    if (Q == 1){
+       for (int i = 0 ; i < N; ++i){
+        if (fir[i] > sec[i]){
+            total += fir[i];
+        }else{
+            total += sec[i];
+        }
+    } 
+    cout << total << endl;
+    }
+    if (Q == 2){
+        sort(fir.begin(), fir.end(), greater<int>());
+        //fir is sorted greatest to least, sec is sorted least to greatest
+        for (int i = 0; i < N; ++i){
+            if (fir[i] > sec[i]){
+                NOne+= fir[i];
+            }else{
+                NOne += sec[i];
+            }
+        }
+        sort(fir.begin(), fir.end());
+        sort(sec.begin(), sec.end(), greater<int>()); 
+        for (int i = 0; i < N; ++i){
+            if (fir[i] > sec[i]){
+                NTwo+= fir[i];
+            }else{
+                NTwo += sec[i];
+            }
+        }
+    if (NOne > NTwo){
+        cout << NOne << endl;
+    }else{
+        cout << NTwo << endl;
+    }
+    }
+
+}
