@@ -1,0 +1,41 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+int main(){
+    int weight;
+    cin >> weight;
+    int N;
+    cin >> N;
+    vector <int> all(N);
+    for (int i = 0; i < N; ++i) cin >> all[i];
+    //the bridge can gold 4 cars at once
+    int carsonbridge = 0;
+    int final = 0;
+    int weightonbridge = 0;
+    for (int i = 0; i < N; ++i){
+        if (carsonbridge < 4){
+            weightonbridge += all[i];
+            carsonbridge += 1;
+            if (weightonbridge <= weight){
+                final+=1;
+            }else{
+                break;
+            }
+        }else{
+            weightonbridge += all[i];
+            weightonbridge -= all[i-4];
+            if (weightonbridge <= weight){
+                final+=1;
+            }else{
+                break;
+        }
+
+    }
+    }
+    cout << final <<endl;
+}
+//basically if the number of cars is less than 4
+//we just add the next one, add 1 to the total, and check if its greater than the weight
+
+//if the number of car is over 4
+//add the next one, subtract the previous, and do the same as before
