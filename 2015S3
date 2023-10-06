@@ -1,0 +1,47 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int main(){
+    int G, P;
+    cin >> G >> P;
+    vector <int> avail(G);
+    vector <int> planes(P);
+    for (int i = 1; i <= G; ++i){
+        avail[i-1] = i;
+    } 
+    for (int i = 0; i < P; ++i) cin >> planes[i];
+    sort(avail.begin(), avail.end(), greater<int>());
+    int final = 0;
+    bool hello = true;
+    for (int i = 0; i < P; ++i){
+        if (!hello){
+            break;
+        }
+        //X is the value of the current plane
+        //X can be placed at any avail value where X <= avail
+        for (int j = 0; j < avail.size(); ++j){
+            int X = planes[i];
+            int Y = avail[j];
+            if (Y == 0){
+                break;
+            }
+            //Y is the current gate
+            //if X <= Y, erase that value, add 1 to final value, break the loop
+            if (Y <= X){
+                final++;
+                avail.erase(avail.begin() + j);
+                break;
+            }
+            if (j == avail.size() - 1){
+                hello = false;
+                break;
+            }
+        }
+    }
+    cout << final << endl;
+}
+//need to stop when one plane cant land
+//when one plane cant lend, then j will be == avails.size() - 1
+//going outside bounds of the avail vector
+//its not breaking when one doesnt land
