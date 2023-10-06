@@ -1,0 +1,13 @@
+#include <iostream>
+using namespace std;
+long long choose3(int N){
+    N -= 1;
+    N = N*(N-1)*(N-2);
+    N /= 6;
+    return N;
+}
+int main(){
+    int N;
+    cin >> N;
+    cout << choose3(N) << endl;
+}
