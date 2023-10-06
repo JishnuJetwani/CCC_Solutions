@@ -1,0 +1,17 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int main(){
+    int t = 0, T = 0, s = 0, S = 0;
+    for (int i = 0; i <= 3; ++i){
+        string hello;
+        getline(cin, hello);
+        t += count(hello.begin(), hello.end(), 't');
+        T += count(hello.begin(), hello.end(), 'T');
+        s += count(hello.begin(), hello.end(), 's');
+        S += count(hello.begin(), hello.end(), 'S');
+    }
+    if ((t+T) > (s+S)) cout << "English";
+    else if ((s+S) > (t+T)) cout << "French";
+    else cout << "French";
+}
