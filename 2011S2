@@ -1,0 +1,18 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+int main(){
+    int N;
+    cin >> N;
+    vector <char> given(N);
+    vector <char> real(N);
+    int score = 0;
+    for (int i = 0; i < N; ++i) cin >> given[i];
+    for (int i = 0; i < N; ++i) cin >> real[i];
+    for (int i = 0; i < N; ++i){
+        if (real[i] == given[i]){
+            score++;
+        }
+    }
+    cout << score << endl;
+}
